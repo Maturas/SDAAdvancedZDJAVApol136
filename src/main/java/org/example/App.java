@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.ClassRelations.Abstraction.AbstractClass.Figure;
-import org.example.ClassRelations.Abstraction.Interface.Human;
-import org.example.ClassRelations.Abstraction.Polymorphism.Animal;
+
+import org.example.ClassRelations.FunctionalInterfaces.CalculatorExample.Calculator;
+import org.example.ClassRelations.FunctionalInterfaces.TraditionalImplementation.Example;
 
 /**
  * Hello world!
@@ -10,6 +10,6 @@ import org.example.ClassRelations.Abstraction.Polymorphism.Animal;
  */
 public class App {
     public static void main( String[] args ) {
-        Human.example();
+        Calculator.example();
     }
 }
