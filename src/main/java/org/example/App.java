@@ -1,15 +1,14 @@
 package org.example;
 
-
-import org.example.ClassRelations.FunctionalInterfaces.CalculatorExample.Calculator;
-import org.example.ClassRelations.FunctionalInterfaces.TraditionalImplementation.Example;
+import org.example.Exception.ExceptionExample;
+import org.example.Exception.IllegalAmountOfBreadException;
 
 /**
  * Hello world!
  *
  */
 public class App {
-    public static void main( String[] args ) {
-        Calculator.example();
+    public static void main( String[] args ) throws IllegalAmountOfBreadException {
+        ExceptionExample.example();
     }
 }
