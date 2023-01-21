@@ -1,7 +1,5 @@
 package org.example.ClassRelations.Abstraction.Polymorphism;
 
-import org.example.ClassRelations.Composition.Circular.C;
-
 public abstract class Animal {
     protected String name;
 
@@ -12,6 +10,8 @@ public abstract class Animal {
     public void eat() {
         // Omnomnom
     }
+
+    public abstract void tryMakeSound();
 
     public String getName() {
         return name;
@@ -32,13 +32,14 @@ public abstract class Animal {
         // these methods are unique to their respective Animal subclasses
         rex.bark();
         simba.meow();
-        nemo.swim();
+        nemo.beQuiet();
         tweety.tweet();
 
         // Use of polymorphism - a collection of objects of different types with a common superclass
         Animal[] animals = new Animal[] { rex, simba, nemo, tweety };
         for (Animal animal : animals) {
             animal.eat();
+            animal.tryMakeSound();
         }
 
         // Use of polymorphism - upcasting (implicit)
@@ -49,7 +50,13 @@ public abstract class Animal {
         Dog alsoAlsoRex = (Dog) rexAsAnimal; // downcasting is potentially dangerous
         alsoAlsoRex.bark();
 
-        Cat rexIsNotACat = (Cat) rexAsAnimal; // since rexAsAnimal is actually a Dog, this will crash
-        rexIsNotACat.meow();
+        if (rexAsAnimal instanceof Cat) {
+            System.out.println("rexAsAnimal is a Cat, we can downcast!");
+            Cat rexIsNotACat = (Cat) rexAsAnimal; // since rexAsAnimal is actually a Dog, this will crash
+            rexIsNotACat.meow();
+        }
+        else {
+            System.out.println("rexAsAnimal is not a Cat, do not try to downcast!");
+        }
     }
 }

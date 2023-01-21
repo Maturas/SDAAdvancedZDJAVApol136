@@ -5,7 +5,12 @@ public class Fish extends Animal {
         super(name);
     }
 
-    public void swim() {
+    @Override
+    public void tryMakeSound() {
+        beQuiet();
+    }
 
+    public void beQuiet() {
+        System.out.println("...");
     }
 }
