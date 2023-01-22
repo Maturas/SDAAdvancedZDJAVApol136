@@ -1,14 +1,14 @@
 package org.example;
 
-import org.example.Exception.ExceptionExample;
-import org.example.Exception.IllegalAmountOfBreadException;
+
+import org.example.Exercises.OnlineCommunication.OnlineCommunicatorExample;
 
 /**
  * Hello world!
  *
  */
 public class App {
-    public static void main( String[] args ) throws IllegalAmountOfBreadException {
-        ExceptionExample.example();
+    public static void main( String[] args ) {
+        OnlineCommunicatorExample.example();
     }
 }

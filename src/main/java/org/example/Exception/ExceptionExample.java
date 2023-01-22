@@ -17,7 +17,7 @@ public class ExceptionExample {
         System.out.println("How many slices of bread should I eat?");
         Integer amountOfBread = scanner.nextInt();
         Person person = new Person();
-        
+
         try {
             // Attempt to do some things and stop, if one of them throws an exception
             person.eatBread(amountOfBread); // This will cause IllegalAmountOfBreadException
