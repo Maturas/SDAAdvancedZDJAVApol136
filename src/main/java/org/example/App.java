@@ -1,7 +1,7 @@
 package org.example;
 
 
-import org.example.Exercises.OnlineCommunication.OnlineCommunicatorExample;
+import org.example.Streams.ItemMockDAO;
 
 /**
  * Hello world!
@@ -9,6 +9,6 @@ import org.example.Exercises.OnlineCommunication.OnlineCommunicatorExample;
  */
 public class App {
     public static void main( String[] args ) {
-        OnlineCommunicatorExample.example();
+        ItemMockDAO.example();
     }
 }
