@@ -1,4 +1,4 @@
-package org.example.FunctionalInterfaces.TraditionalImplementation;
+package org.example.FunctionalProgramming.FunctionalInterfaces.TraditionalImplementation;
 
 public class Example {
     public static void example() {

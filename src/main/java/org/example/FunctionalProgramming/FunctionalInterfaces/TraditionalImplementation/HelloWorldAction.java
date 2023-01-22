@@ -1,4 +1,4 @@
-package org.example.FunctionalInterfaces.TraditionalImplementation;
+package org.example.FunctionalProgramming.FunctionalInterfaces.TraditionalImplementation;
 
 public class HelloWorldAction implements Action {
     @Override

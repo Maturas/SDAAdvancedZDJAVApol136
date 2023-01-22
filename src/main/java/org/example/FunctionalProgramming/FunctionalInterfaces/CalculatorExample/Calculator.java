@@ -1,4 +1,4 @@
-package org.example.FunctionalInterfaces.CalculatorExample;
+package org.example.FunctionalProgramming.FunctionalInterfaces.CalculatorExample;
 
 import java.util.ArrayList;
 import java.util.List;

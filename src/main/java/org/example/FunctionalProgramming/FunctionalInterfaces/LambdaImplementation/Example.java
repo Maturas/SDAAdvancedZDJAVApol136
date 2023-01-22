@@ -1,6 +1,6 @@
-package org.example.FunctionalInterfaces.LambdaImplementation;
+package org.example.FunctionalProgramming.FunctionalInterfaces.LambdaImplementation;
 
-import org.example.FunctionalInterfaces.TraditionalImplementation.Action;
+import org.example.FunctionalProgramming.FunctionalInterfaces.TraditionalImplementation.Action;
 
 public class Example {
     public static void example() {
