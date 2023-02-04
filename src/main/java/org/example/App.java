@@ -8,6 +8,5 @@ import org.example.Files.VideoGameTXTDAO;
  */
 public class App {
     public static void main( String[] args ) {
-        VideoGameTXTDAO.testFile("D:\\Test.txt");
     }
 }

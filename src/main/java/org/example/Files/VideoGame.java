@@ -1,18 +1,36 @@
 package org.example.Files;
 
 public class VideoGame {
-    private final Integer id;
     private final String title;
     private final String publisher;
     private final String genre;
     private final Integer releaseYear;
 
-    public VideoGame(Integer id, String title, String publisher, String genre, Integer releaseYear) {
-        this.id = id;
+    public VideoGame(String title, String publisher, String genre, Integer releaseYear) {
         this.title = title;
         this.publisher = publisher;
         this.genre = genre;
         this.releaseYear = releaseYear;
+    }
+
+    public VideoGame(String textLine, String separator) {
+        String[] splitLine = textLine.split(separator);
+
+        if (splitLine.length != 4) {
+            throw new IllegalArgumentException();
+        }
+        else {
+            this.title = splitLine[0];
+            this.publisher = splitLine[1];
+            this.genre = splitLine[2];
+
+            try {
+                this.releaseYear = Integer.parseInt(splitLine[3]);
+            }
+            catch (NumberFormatException e) {
+                throw new IllegalArgumentException();
+            }
+        }
     }
 
     public String getTitle() {
@@ -31,12 +49,8 @@ public class VideoGame {
         return releaseYear;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
     @Override
     public String toString() {
-        return this.id.toString() + "|" + this.title + "|" + this.publisher + "|" + this.genre + "|" + this.releaseYear;
+        return this.title + "|" + this.publisher + "|" + this.genre + "|" + this.releaseYear;
     }
 }
