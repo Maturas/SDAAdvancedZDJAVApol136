@@ -14,18 +14,20 @@ public class VideoGame {
     }
 
     public VideoGame(String textLine, String separator) {
-        String[] splitLine = textLine.replace("\n", "").split(separator);
+        this(textLine.replace("\n", "").split(separator));
+    }
 
-        if (splitLine.length != 4) {
+    public VideoGame(String[] record) {
+        if (record.length != 4) {
             throw new IllegalArgumentException();
         }
         else {
-            this.title = splitLine[0];
-            this.publisher = splitLine[1];
-            this.genre = splitLine[2];
+            this.title = record[0];
+            this.publisher = record[1];
+            this.genre = record[2];
 
             try {
-                this.releaseYear = Integer.parseInt(splitLine[3]);
+                this.releaseYear = Integer.parseInt(record[3]);
             }
             catch (NumberFormatException e) {
                 throw new IllegalArgumentException();
@@ -61,5 +63,9 @@ public class VideoGame {
 
     public String toString(String separator) {
         return this.title + separator + this.publisher + separator + this.genre + separator + this.releaseYear;
+    }
+
+    public String[] toStringRecord() {
+        return new String[] { this.title, this.publisher, this.genre, this.releaseYear.toString() };
     }
 }
