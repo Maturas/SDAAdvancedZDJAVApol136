@@ -1,6 +1,11 @@
 package org.example.Reflection;
 
 import java.lang.reflect.*;
+import java.util.Arrays;
+import java.util.Optional;
+
+// Object.class - get the Class<?> information object from class itself (static)
+// obj.getClass() - get the Class<?> information object from an object (non-static)
 
 // Some common use cases of Reflection methods
 public class ReflectionExamples {
@@ -78,6 +83,51 @@ public class ReflectionExamples {
             // Write out interface's name and methods information
             System.out.println(interfaze.getSimpleName());
             getClassMethods(interfaze);
+        }
+    }
+
+    // Read value of a private field from given object (field of given name and type)
+    public static void getValueOfAPrivateField(Object obj, String fieldName, Class<?> fieldType) {
+        Class<?> clazz = obj.getClass();
+        try {
+            Optional<Field> optionalField = Arrays.stream(clazz.getDeclaredFields())
+                    .filter(f -> f.getName().equals(fieldName) && f.getType().equals(fieldType))
+                    .findFirst();
+
+            if (optionalField.isPresent()) {
+                Field field = optionalField.get();
+                field.setAccessible(true);
+                Object value = field.get(obj);
+                System.out.println(value.toString());
+            }
+            else {
+                System.out.println("FIELD NOT FOUND!!!");
+            }
+        }
+        catch (IllegalAccessException e) {
+            System.out.println("ACCESS DENIED!!!");
+        }
+    }
+
+    // Set value to a private field in given object (field of given name and type)
+    public static void setValueOfAPrivateField(Object obj, String fieldName, Object newValue) {
+        Class<?> clazz = obj.getClass();
+        try {
+            Optional<Field> optionalField = Arrays.stream(clazz.getDeclaredFields())
+                    .filter(f -> f.getName().equals(fieldName) && f.getType().equals(newValue.getClass()))
+                    .findFirst();
+
+            if (optionalField.isPresent()) {
+                Field field = optionalField.get();
+                field.setAccessible(true);
+                field.set(obj, newValue);
+            }
+            else {
+                System.out.println("FIELD NOT FOUND!!!");
+            }
+        }
+        catch (IllegalAccessException e) {
+            System.out.println("ACCESS DENIED!!!");
         }
     }
 }
