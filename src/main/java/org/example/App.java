@@ -1,7 +1,6 @@
 package org.example;
 
-
-import org.example.Streams.ItemMockDAO;
+import org.example.Files.VideoGameTXTDAO;
 
 /**
  * Hello world!
@@ -9,6 +8,6 @@ import org.example.Streams.ItemMockDAO;
  */
 public class App {
     public static void main( String[] args ) {
-        ItemMockDAO.example();
+        VideoGameTXTDAO.testFile("D:\\Test.txt");
     }
 }
