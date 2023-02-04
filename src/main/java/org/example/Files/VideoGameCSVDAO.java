@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+// CSV file implementation with OpenCSV library
 public class VideoGameCSVDAO implements DAO<VideoGame> {
     private final String filePath;
 

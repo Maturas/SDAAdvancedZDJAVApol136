@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+// TXT file implementation with default Java libraries
 public class VideoGameTXTDAO implements DAO<VideoGame> {
     private final String filePath;
     private final String separator;
