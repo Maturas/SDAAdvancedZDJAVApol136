@@ -1,5 +1,7 @@
 package org.example.Files;
 
+import java.util.Optional;
+
 public class VideoGameManager {
     private final DAO<VideoGame> dao;
 
@@ -15,9 +17,9 @@ public class VideoGameManager {
         dao.create(new VideoGame("The Legend of Zelda Breath of the Wild", "Nintendo", "Action-adventure", 2017));
     }
 
-    public void run() {
-        for (VideoGame game : dao.readAll()) {
-            System.out.println(game.toString());
+    public void test() {
+        for (Optional<VideoGame> game : dao.readAll()) {
+            game.ifPresentOrElse(System.out::println, () -> System.out.println("CORRUPT DATA"));
         }
     }
 }

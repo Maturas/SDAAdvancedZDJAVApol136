@@ -14,7 +14,7 @@ public class VideoGame {
     }
 
     public VideoGame(String textLine, String separator) {
-        String[] splitLine = textLine.split(separator);
+        String[] splitLine = textLine.replace("\n", "").split(separator);
 
         if (splitLine.length != 4) {
             throw new IllegalArgumentException();
@@ -51,6 +51,15 @@ public class VideoGame {
 
     @Override
     public String toString() {
-        return this.title + "|" + this.publisher + "|" + this.genre + "|" + this.releaseYear;
+        return "VideoGame{" +
+                "title='" + title + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", genre='" + genre + '\'' +
+                ", releaseYear=" + releaseYear +
+                '}';
+    }
+
+    public String toString(String separator) {
+        return this.title + separator + this.publisher + separator + this.genre + separator + this.releaseYear;
     }
 }

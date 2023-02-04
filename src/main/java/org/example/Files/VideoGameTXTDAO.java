@@ -8,19 +8,20 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class VideoGameTXTDAO implements DAO<VideoGame> {
     private final String filePath;
+    private final String separator;
 
-    public VideoGameTXTDAO(String filePath) {
+    public VideoGameTXTDAO(String filePath, String separator) {
         this.filePath = filePath;
+        this.separator = separator;
     }
 
     @Override
     public Boolean create(VideoGame newObj) {
         if (checkIfExistsAndCreateIfDoesnt(filePath)) {
-            String newLine = newObj.toString();
+            String newLine = newObj.toString(this.separator);
             List<String> lines = readLinesFromFile(this.filePath);
 
             if (lines.contains(newLine)) {
@@ -39,7 +40,7 @@ public class VideoGameTXTDAO implements DAO<VideoGame> {
     @Override
     public Optional<VideoGame> read(Integer id) {
         if (checkIfExistsAndCreateIfDoesnt(filePath)) {
-            return lineToVideoGameObject(readLineFromFile(this.filePath, id));
+            return lineToVideoGameObject(readLineFromFile(this.filePath, id), this.separator);
         }
         else {
             return Optional.empty();
@@ -50,27 +51,12 @@ public class VideoGameTXTDAO implements DAO<VideoGame> {
     public List<Optional<VideoGame>> readAll() {
         if (checkIfExistsAndCreateIfDoesnt(filePath)) {
             return readLinesFromFile(filePath).stream()
-                            .map(VideoGameTXTDAO::lineToVideoGameObject)
+                            .map(line -> lineToVideoGameObject(line, this.separator))
                             .toList();
         }
         else {
             return new ArrayList<>();
         }
-    }
-
-    @Override
-    public Boolean update(VideoGame updatedObj) {
-        return null;
-    }
-
-    @Override
-    public Boolean delete(Integer id) {
-        return null;
-    }
-
-    @Override
-    public Boolean delete(VideoGame objToDelete) {
-        return null;
     }
 
     private static Boolean checkIfExistsAndCreateIfDoesnt(String filePath) {
@@ -121,8 +107,8 @@ public class VideoGameTXTDAO implements DAO<VideoGame> {
     private static Boolean writeLineToFile(String filePath, String line) {
         try {
             FileWriter writer = new FileWriter(filePath, true);
-            writer.append("\n");
             writer.append(line);
+            writer.append("\n");
             writer.close();
             return true;
         }
@@ -131,13 +117,15 @@ public class VideoGameTXTDAO implements DAO<VideoGame> {
         }
     }
 
-    private static Optional<VideoGame> lineToVideoGameObject(Optional<String> line) {
-        return line.isPresent() ? lineToVideoGameObject(line.get()) : Optional.empty();
+    private static Optional<VideoGame> lineToVideoGameObject(Optional<String> line, String separator) {
+        return line.isPresent()
+                ? lineToVideoGameObject(line.get(), separator)
+                : Optional.empty();
     }
 
-    private static Optional<VideoGame> lineToVideoGameObject(String line) {
+    private static Optional<VideoGame> lineToVideoGameObject(String line, String separator) {
         try {
-            VideoGame game = new VideoGame(line, "|");
+            VideoGame game = new VideoGame(line, separator);
             return Optional.of(game);
         }
         catch (IllegalArgumentException e) {
